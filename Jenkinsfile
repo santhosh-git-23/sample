@@ -4,11 +4,17 @@ pipeline {
   }
   tools{
     jdk 'jdk'
+    maven 'mvn'
   }
   stages {
     stage('Cloning Git') {
       steps {
         git([url: 'https://github.com/santhosh-git-23/sample.git', branch: 'main'])
+       }
+    }
+    stage('Maven') {
+      steps {
+        sh 'mvn clean install'
        }
     }
     stage ('jar execution') {
