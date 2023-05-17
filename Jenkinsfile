@@ -10,13 +10,10 @@ pipeline {
     stage('Cloning Git') {
       steps {
         git([url: 'https://github.com/santhosh-git-23/sample.git', branch: 'main'])
+        echo 'Hello'
        }
     }
-    stage('Maven') {
-      steps {
-        sh 'mvn clean install'
-       }
-    }
+    
     stage ('jar execution') {
       steps{
         echo "Compiling ... "
