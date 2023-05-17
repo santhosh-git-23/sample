@@ -10,7 +10,7 @@ pipeline {
     stage('Cloning Git') {
       steps {
         git([url: 'https://github.com/santhosh-git-23/sample.git', branch: 'main'])
-        echo 'Hello'
+        sh 'Hello'
        }
     }
     
