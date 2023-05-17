@@ -9,11 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 @SpringBootApplication
 @RestController
 public class SampleApplication {
-	System.out.println("Hello, World!");
 
 	 @GetMapping("/")
 	    public String welcomeAdmin() {
-		    Sytem.out.println("Hello World");
+		 Sytem.out.println("Hello World");
 		 return "Wecome Santhosh";
 	    }  
 	
