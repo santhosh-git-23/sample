@@ -13,6 +13,7 @@ public class SampleApplication {
 
 	 @GetMapping("/")
 	    public String welcomeAdmin() {
+		    Sytem.out.println("Hello World");
 		 return "Wecome Santhosh";
 	    }  
 	
