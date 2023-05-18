@@ -1,29 +1,19 @@
 pipeline {
-  agent{
-    label 'test'
-  }
-  tools{
-    jdk 'jdk'
-    maven 'mvn'
+  agent any
+  tools {
+    maven 'maven' 
   }
   stages {
-    stage('Cloning Git') {
+    stage ('Build') {
       steps {
-        sh 'Hello'
-        git([url: 'https://github.com/santhosh-git-23/sample.git', branch: 'main'])
-       }
+        sh 'mvn clean package'
+      }
     }
-    
-    stage ('jar execution') {
-      steps{
-        echo "Compiling ... "
-        sh 'javac src/main/java/com/example/sample/SampleApplication.java'
-        echo "Execution ..."
-        sh 'java src/main/java/com/example/sample/SampleApplication.java'
-        sh 'jar cvfe SampleApplication.jar SampleApplication *.class'
-        echo "============================"
-        sh 'java -jar SampleApplication.jar'
-        echo "============================"
+    stage ('Deploy') {
+      steps {
+        script {
+          deploy adapters: [tomcat9(credentialsId: 'tomcat_credential', path: '', url: 'http://13.50.109.116:8080/')], contextPath: '/pipeline', onFailure: false, war: '**/*.war' 
+        }
       }
     }
   }
